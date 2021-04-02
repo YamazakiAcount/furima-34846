@@ -36,7 +36,7 @@
 belongs_to :user
 has_one :record
 
-## record テーブル
+## records テーブル
 
 | Column    | Type       | Options     |
 | --------- | ---------- | ----------- |
@@ -48,7 +48,7 @@ belongs_to :item
 has_one :address
 belongs_to :user
 
-## address テーブル
+## addresses テーブル
 
 | Column             | Type        | Options     |
 | ------------------ | ----------- | ----------- |
@@ -58,7 +58,7 @@ belongs_to :user
 | address            | string      | null: false |
 | building name      | string      |
 | phone_number       | string      | null: false |
-| order              | references  | foreign_key: true |
+| record             | references  | foreign_key: true |
 
 ### Association
 belongs_to :record
