@@ -29,7 +29,7 @@
 | prefecture_id   | integer    | null: false |
 | delivery_day_id | integer    | null: false |
 | price           | integer    | null: false |
-| user_id         | references | foreign_key: true |
+| user            | references | foreign_key: true |
 | condition_id    | integer    | null: false |
 
 ### Association
@@ -40,8 +40,8 @@ has_one :record
 
 | Column    | Type       | Options     |
 | --------- | ---------- | ----------- |
-| user      | references | null: false |
-| item      | references | null: false |
+| user      | references | null: false , foreign_key: true|
+| item      | references | null: false , foreign_key: true|
 
 ### Association
 belongs_to :item
@@ -58,7 +58,7 @@ belongs_to :user
 | address            | string      | null: false |
 | building name      | string      |
 | phone_number       | string      | null: false |
-| order_id           | references  | foreign_key: true |
+| order              | references  | foreign_key: true |
 
 ### Association
 belongs_to :record
