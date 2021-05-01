@@ -6,11 +6,6 @@ class User < ApplicationRecord
 
   with_options presence: true do
     validates :nickname
-    validates :email
-    validates :family_name
-    validates :first_name
-    validates :family_name_kana
-    validates :first_name_kana
     validates :birth_day
     # ひらがな、カタカナ、漢字のみ許可する
     with_options format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, message: 'is invalid. Input full-width characters.' } do
