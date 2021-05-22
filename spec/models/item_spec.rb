@@ -70,6 +70,12 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Price is not included in the list")
       end
 
+      it '販売価格は、¥300~¥9,999,999の間のみでしか出品できないこと' do
+        @item.price = 10,000,000
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is not included in the list")
+      end
+
       it '販売価格は半角数字のみでしか出品できないこと' do
         @item.price = "５００"
         @item.valid?
@@ -78,6 +84,12 @@ RSpec.describe Item, type: :model do
 
       it '販売価格は半角数字のみでしか出品できないこと' do
         @item.price = "five hundred"
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is not included in the list")
+      end
+
+      it '販売価格は半角数字のみでしか出品できないこと' do
+        @item.price = "5hundred"
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is not included in the list")
       end
