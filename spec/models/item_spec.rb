@@ -94,14 +94,6 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Price is not included in the list")
       end
 
-    #it "入力された販売価格によって、販売手数料や販売利益の表示が変わること" do
-    #end
-    #it "必要な情報を適切に入力すると、商品情報がデータベースに保存されること" do
-    #end
-    #it "エラーハンドリングができていること（入力に問題がある状態で「出品する」ボタンが押された場合、情報は保存されず、出品ページに戻りエラーメッセージが表示されること）" do
-    #end
-    #it "エラーハンドリングの際、1つのエラーに対して同じエラーメッセージが重複して表示されないこと" do
-    #end
     end
   end
 end
