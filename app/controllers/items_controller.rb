@@ -46,5 +46,6 @@ class ItemsController < ApplicationController
 
   def contributor_confirmation
     redirect_to root_path unless current_user.id == @item.user_id
+    redirect_to root_path unless @item.record.blank?
   end
 end

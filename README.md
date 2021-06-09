@@ -56,7 +56,7 @@ belongs_to :user
 | prefecture_id      | integer     | null: false |
 | city               | string      | null: false |
 | address            | string      | null: false |
-| building name      | string      |
+| building_name      | string      |
 | phone_number       | string      | null: false |
 | record             | references  | foreign_key: true |
 
