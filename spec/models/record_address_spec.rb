@@ -8,8 +8,11 @@ RSpec.describe RecordAddress, type: :model do
       sleep(1)
     end
     context '必要な情報を適切に入力すると、商品の購入ができること' do
-      it 'token,prefecture_id,city,address,phone_numberが存在すれば登録できること' do
+      it 'token,prefecture_id,city,address,building_name,phone_numberが存在すれば登録できること' do
         expect(@record).to be_valid
+      end
+      it 'building_nameが空でも登録できること' do
+        @record.building_name = nil
       end
     end
     context '商品購入ができないとき' do
@@ -33,6 +36,11 @@ RSpec.describe RecordAddress, type: :model do
         @record.valid?
         expect(@record.errors.full_messages).to include("Prefecture can't be blank")
       end
+      it "prefecture_idが---を選択された状態では登録できない" do
+        @record.prefecture_id = 1
+        @record.valid?
+        expect(@record.errors.full_messages).to include("Prefecture can't be blank")
+      end
       it "cityが空では登録できない" do
         @record.city = nil
         @record.valid?
@@ -50,6 +58,11 @@ RSpec.describe RecordAddress, type: :model do
       end
       it "phone_numberは11桁以内の数値のみ保存可能なこと" do
         @record.phone_number = "090123456789"
+        @record.valid?
+        expect(@record.errors.full_messages).to include("Phone number is invalid. Input half-width characters.")
+      end
+      it "phone_numberが英数混合では登録できない" do
+        @record.phone_number = "0901234567a"
         @record.valid?
         expect(@record.errors.full_messages).to include("Phone number is invalid. Input half-width characters.")
       end
