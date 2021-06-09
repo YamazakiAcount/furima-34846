@@ -53,6 +53,16 @@ RSpec.describe RecordAddress, type: :model do
         @record.valid?
         expect(@record.errors.full_messages).to include("Phone number is invalid. Input half-width characters.")
       end
+      it "user_idが空だと購入できない" do
+        @record.user_id = nil
+        @record.valid?
+        expect(@record.errors.full_messages).to include("User can't be blank")
+      end
+      it "item_idが空だと購入できない" do
+        @record.item_id = nil
+        @record.valid?
+        expect(@record.errors.full_messages).to include("Item can't be blank")
+      end
     end
   end
 

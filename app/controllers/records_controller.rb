@@ -1,16 +1,14 @@
 class RecordsController < ApplicationController
 
+  before_action :set_item, only: [:index, :create]
+  before_action :authenticate_user!, only: [:index]
+  before_action :user_item, only: [:index]
+
   def index
     @record_address = RecordAddress.new
-    @item = Item.find(params[:item_id])
-    if current_user == @item.user || @item.record.present?
-      redirect_to root_path
-    end
-    redirect_to new_user_session_path unless user_signed_in?
   end
   
   def create
-    @item = Item.find(params[:item_id])
     @record_address = RecordAddress.new(record_params)
     if @record_address.valid?
       pay_item
@@ -19,10 +17,6 @@ class RecordsController < ApplicationController
     else
       render :index
     end
-  end
-
-  def edit
-    @item = Item.find(params[:item_id])
   end
 
   private
@@ -38,5 +32,15 @@ class RecordsController < ApplicationController
       card: record_params[:token],
       currency:'jpy'
     )
+  end
+
+  def set_item
+    @item = Item.find(params[:item_id])
+  end
+
+  def user_item
+    if current_user == @item.user || @item.record.present?
+      redirect_to root_path
+    end
   end
 end
