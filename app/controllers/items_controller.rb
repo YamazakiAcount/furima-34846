@@ -50,7 +50,7 @@ class ItemsController < ApplicationController
   end
 
   def contributor_confirmation
-    if current_user.id == @item.user_id || @item.record.blank?
+    if current_user.id != @item.user_id || @item.record.present?
       redirect_to root_path
     end
   end
