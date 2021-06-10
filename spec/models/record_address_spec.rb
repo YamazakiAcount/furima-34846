@@ -13,6 +13,7 @@ RSpec.describe RecordAddress, type: :model do
       end
       it 'building_nameが空でも登録できること' do
         @record.building_name = nil
+        expect(@record).to be_valid
       end
     end
     context '商品購入ができないとき' do
